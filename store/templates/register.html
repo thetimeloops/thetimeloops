@@ -1,0 +1,61 @@
+{% extends 'basic.html' %}
+{% block body %}
+
+<!-- Default form register -->
+<div class="container my-5">
+<form class="text-center my-5 border border-light p-3" method="POST" action="register">
+    {% csrf_token %}
+    <p class="h2 mb-4">Register Here</p>
+
+    <div class="alert alert-danger">{{err}}</div>
+
+    <div class="form-row mb-4">
+        <div class="col">
+            <!-- First name -->
+            <input type="text" id="defaultRegisterFormFirstName" name="user_name" class="form-control" placeholder="Name" required>
+        </div>
+        <div class="col">
+            <!-- Last name -->
+            <input type="text" id="defaultRegisterFormLastName"  name="username" class="form-control" placeholder="Choose a username" required>
+        </div>
+    </div>
+
+    <!-- E-mail -->
+    <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail"  name="password"  required>
+    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+        Don't fake it ! we will send you various info through this mail
+    </small>
+    <!-- Password -->
+    <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" name="password" required>
+    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+    </small>
+
+    <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="ConfirmPassword" aria-describedby="defaultRegisterFormPasswordHelpBlock" name="cpassword" required>
+    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+    </small>
+
+    <!-- Phone number -->
+    <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock" name="phone" required>
+
+
+   
+
+    <!-- Sign up button -->
+    <button class="btn btn-info my-4 btn-block" type="submit">Register Me</button>
+
+    <!-- Social register -->
+    <p>Already registered ?</p>
+
+    <a href="/login" class="btn btn-secondary btn-sm" type="submit">Login</a>
+
+    <hr>
+
+    <!-- Terms of service -->
+    <p>By clicking
+        <em>Sign up</em> you agree to our
+        <a href="" target="_blank">terms of service</a>
+
+</form>
+<!-- Default form register -->
+</div>
+{% endblock %}

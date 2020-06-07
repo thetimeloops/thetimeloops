@@ -1,0 +1,139 @@
+
+{% extends 'basic.html' %}
+  {% block body %}
+
+  
+
+  <!--Main layout-->
+  <main class="mt-5 pt-4">
+    <div class="container dark-grey-text mt-5">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <img src="{{detinfo.front_image.url}}" class="img-fluid" alt="">
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <!--Content-->
+          <div class="p-4">
+
+            <div class="mb-3">
+              <h2><span>{{detinfo.name}}Rs</span></h2>
+              <!--
+              <a href="">
+                <span class="badge purple mr-1">Category 2</span>
+              </a>
+              <a href="">
+                <span class="badge blue mr-1">New</span>
+              </a>
+              <a href="">
+                <span class="badge red mr-1">Bestseller</span>
+              </a>
+            </div>
+          -->
+          <hr>
+            <p class="lead">
+              <span class="mr-1 h5">
+                
+                <span>PRICE : </span>
+                {{detinfo.dissprice}}Rs
+              </span>
+             <small><del><span>{{detinfo.price}}Rs</span></del> </small>
+            
+            </p>
+            <hr>
+            <p class="lead font-weight-bold h4">Description</p>
+
+            <p>{{detinfo.description|slice:"0:53"}}</p>
+            <hr>
+            <p class="lead">
+              <span class="mr-1 h6">
+              SIZE AVAILABLE: 
+              <span class="badge badge-pill badge-default">SMALL</span>
+<span class="badge badge-pill badge-primary">MEDIUM</span>
+<span class="badge badge-pill badge-dark">LARGE</span>
+            </span>
+            </p>
+            <hr>
+            <p class="lead">
+            
+            </p>
+            <hr>
+            <form class="d-flex justify-content-left">
+              <!-- Default input -->
+              
+              <a href="/checkout/{{detinfo.product_id}}" class="btn btn-primary btn-md my-0" type="submit">Buy Now
+                
+              </a>
+              <a href="/products/{{detinfo.category}}" class="btn btn-secondary btn-sm">Browse more {{detinfo.category}} products</a>
+            </form>
+
+          </div>
+          <!--Content-->
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+      <hr>
+
+      <!--Grid row-->
+      <div class="row d-flex justify-content-center wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-6 text-center">
+<!--
+          <h4 class="my-4 h4">Additional information</h4>
+
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta odit
+            voluptates,
+            quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.</p>
+
+        </div>
+        
+
+      </div>
+    
+      <div class="row wow fadeIn">
+
+        
+        <div class="col-lg-4 col-md-12 mb-4">
+
+          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="">
+
+        </div>
+        
+
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+
+          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg" class="img-fluid" alt="">
+
+        </div>
+        
+
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+
+          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
+
+        </div>
+        
+
+      </div>
+      <!--Grid row-->
+
+    </div>
+  </main>
+ 
+  {% endblock %}

@@ -1,0 +1,241 @@
+{% extends 'basic.html' %}
+{% block body %}
+
+<main class="mt-5 pt-5">
+    <div class="container wow fadeIn">
+
+      <!-- Heading -->
+      <h2 class="my-5 h2 text-center">CHECKOUT AREA</h2>
+
+
+      <div class="col-md-12 mb-4">
+        <form action="/placedorder" method="POST" >
+          {%csrf_token%}
+        <!-- Heading -->
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class=" h3 text-center">Your cart</span>
+          <span class="badge badge-secondary badge-pill"></span>
+        </h4>
+
+        <!-- Cart -->
+        <ul class="list-group mb-3 z-depth-1">
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">{{slug.name}}</h6>
+              <small class="text-muted">Brief description</small>
+            </div>
+            <span class="text-muted">{{slug.dissprice}} Rs</span>
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">SELECT SIZE</h6>
+              <small class="text-muted">Brief description</small>
+            </div>
+            <!-- Default inline 1-->
+<div class="custom-control custom-radio custom-control-inline">
+    <input type="radio" name="size" class="custom-control-input" id="defaultInline1" value="Small" name="inlineDefaultRadiosExample">
+    <label class="custom-control-label"  for="defaultInline1">Small</label>
+  </div>
+  
+  <!-- Default inline 2-->
+  <div class="custom-control custom-radio custom-control-inline">
+    <input type="radio" name="size" class="custom-control-input" id="defaultInline2" value="Medium" name="inlineDefaultRadiosExample">
+    <label class="custom-control-label" for="defaultInline2">Medium</label>
+  </div>
+  
+  <!-- Default inline 3-->
+  <div class="custom-control custom-radio custom-control-inline">
+    <input type="radio" name="size" class="custom-control-input" id="defaultInline3" value="Large" name="inlineDefaultRadiosExample">
+    <label class="custom-control-label" for="defaultInline3">Large</label>
+  </div>
+          </li>
+
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+                <h6 class="my-0">Quantity</h6>
+                
+
+            </div>
+            <div class="col-md-3">
+                <!---
+                <input type="numb" id="#input1" class="text-muted" value="{{slug.dissprice}}">
+            <input type="number" id="#input2" name="input2" class="text-muted" value="">
+            <a href="javascript: void(0)" onClick="calc()">Calculate</a>
+            
+            <input type="text" name="output" id="output" value="">
+                -->
+                
+                <input type="hidden" name="input1" id="input1" value="{{slug.dissprice}}">
+<input type="number" name="quantity" id="input2" value="1">
+<!---
+<input type="text" name="output" id="output" value="">-->
+                
+        </div>
+          </li>
+
+          <!--
+          <li class="list-group-item d-flex justify-content-between bg-light">
+            <div class="text-success">
+              <h6 class="my-0">Promo code</h6>
+              <small>EXAMPLECODE</small>
+            </div>
+            <span class="text-success">-$5</span>
+          </li>-->
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total (Rs)</span>
+            
+            <input type="text" name="output" id="output" style="border: none;" class="text-right text-muted" value="">
+          </li>
+        </ul>
+        <!-- Cart -->
+
+        <!-- Promo code 
+        <form class="card p-2">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Promo code" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-secondary btn-md waves-effect m-0" type="button">Redeem</button>
+            </div>
+          </div>
+        </form>
+        <!-- Promo code -->
+
+      </div>
+      <!--Grid column-->
+
+    
+    <!--Grid row-->
+
+      
+      <!--Grid row-->
+      <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-12 mb-4">
+            <span class="h2 text-center">SHIPPING DETAILS</span>
+          <!--Card-->
+          <div class="card my-5">
+
+            <!--Card content-->
+            <form class="card-body">
+              
+              <!--Grid row-->
+              <div class="row">
+
+                <!--Grid column-->
+                <div class="col-md-6 mb-2">
+                    
+                  <!--firstName-->
+                  <div class="md-form ">
+                    <input type="text" id="firstName" name="firstName" class="form-control">
+                    <label for="firstName" class="">First name</label>
+                  </div>
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+
+                <!--Grid column-->
+
+              </div>
+
+              <div class="md-form mb-5">
+                <input type="text" id="email" name="email" class="form-control" placeholder="youremail@example.com">
+                <label for="email" class="">Email (Keep it real We will send product details!)</label>
+              </div>
+
+              <!--address-->
+              <div class="md-form mb-5">
+                <input type="text" id="address" name="adress" class="form-control" placeholder="1234 Main St">
+                <label for="address" class="">Address</label>
+              </div>
+
+
+              <!--Grid row-->
+              <div class="row">
+
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-12 mb-4">
+
+                  <label for="country">Country <small>(We only ship in India)</small></label>
+                
+                    <input type="text" disabled class="form-control" placeholder="INDIA">
+                
+                 
+
+                </div>
+                <!--Grid column-->
+
+                <div class="col-lg-4 col-md-12 mb-4">
+
+                  <label for="country">State</label>
+                
+                    <input type="text" required name="state" name="state" class="form-control" placeholder="Ex. Uttar Pradesh">
+                
+                 
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-6 mb-4">
+
+                  <label for="zip">Zip</label>
+                  <input type="text" name="zip" class="form-control" id="zip" placeholder="" required>
+
+                </div>
+                <!--Grid column-->
+
+              </div>
+              <!--Grid row-->
+
+              <hr>
+
+              <label for="payment"><h3>Payment</h3></label> 
+              <div class="d-block my-3">
+                <div class="custom-control custom-radio">
+                  <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                  <label class="custom-control-label" for="credit">COD <small>Cash On Delivery</small></label>
+                  
+
+                  <hr>
+                </div>
+              </div>
+   
+
+              
+              
+              <hr class="mb-4">
+              <input type="hidden" name="product_id" value="{{slug.product_id}}">
+              <button class="btn btn-primary btn-lg btn-block" type="submit">Place Order</a>
+
+            </form>
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+  
+
+      </div>
+      <!--Grid row-->
+
+    </div>
+  </main>
+
+{% endblock%}
+{%block js%}
+
+<script type="text/javascript">
+
+$("#input2,#input1").keyup(function () {
+
+$('#output').val($('#input1').val() * $('#input2').val());
+
+});
+
+</script>
+
+{%endblock%}
