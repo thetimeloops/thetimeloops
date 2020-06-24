@@ -205,7 +205,7 @@
         <div class="col-lg-3 col-md-6 mb-4"> 
 
           <!--Card-->
-          <form method="post" action="/cartadd" >
+          <form method="POST" action="/cartadd" id="add_cart">
             {% csrf_token %}
           <div class="card">
 
@@ -246,10 +246,10 @@
 
             </div>
             
-            <input type="hidden" class="product_id" name="product_id" value="{{prod.product_id}}">
+            <input type="hidden" class="product_id" name="product_id" id="hid_id"value="{{prod.product_id}}">
             <!--Card content-->
 
-              <button type="submit"  class="btn btn-primary" >Add To Cart</button>
+              <button type="submit"  class="btn btn-primary">Add To Cart</button>
               <a href="/prodview/{{prod.product_id}}" class="btn btn-dark">See Product</a>
 
             </div>
@@ -311,5 +311,30 @@
 
   </div>
 </main>
-      
+      <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $('#add_cart').submit(function(){
+      var token = '{{csrf_token}}';
+    var catid;
+    catid = document.getElementById("hid_id").value;
+    catid=parseInt(catid);
+    $.ajax(
+    { headers: { "X-CSRFToken": token },
+        type:"POST",
+        url: "{% url 'cartadd' %}",
+        data:{
+                 post_data: catid
+        },
+        success: function( data ) 
+        {
+         var x=document.getElementById("cart_count").innerHTML;
+          x=parseInt(x);
+          x+=1
+          document.getElementById("cart_count").innerHTML=x;
+        }
+     })
+});
+
+    </script> -->
+
 {%endblock%}

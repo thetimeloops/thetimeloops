@@ -7,12 +7,19 @@ from django.contrib.auth.models import User , auth
 from django.contrib import auth
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
+import random
 
 # Create your views here.
 
 def index(request):
     count=cart_DB.objects.filter(username=request.user.username).count()
-    return render(request,"home-page.html",{'count':count})
+    x_img=product_DB.objects.get(name="anything")
+    dyn_img=dyn_slide.objects.filter(dysp=True)
+    count=dyn_slide.objects.filter(dysp=True).count()
+    dysp_rand=random.randint(1,count)
+    dysp_now=dyn_slide.objects.get(dysp=True,id=dysp_rand)
+    print(dysp_now)
+    return render(request,"home-page.html",{"front":x_img.front_image,"back":x_img.back_image,"model_":x_img.model_image,"count":count,"dyn_disp":dysp_now})
 
 def products(request,slug):
     product_info=product_DB.objects.filter(category=slug)

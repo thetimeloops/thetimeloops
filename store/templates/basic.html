@@ -17,6 +17,28 @@
   <!-- Your custom styles (optional) -->
   <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
   <style type="text/css">
+
+    {% block style %}
+
+    {% endblock %}
+.nav-link_waves-effect{
+        color:white;
+        margin:2px;
+        display: inline-block;
+        font-size:15px;
+      }
+    .nav-link_waves-effect:hover{
+      color:yellow;
+        margin:2px;
+        display: inline-block;
+        font-size:15px;
+    }  
+.navbar-brand_waves-effect1{
+  color:black;
+        margin:2px;
+  display: inline-block;
+        font-size:20px;
+}
     html,
     body,
     header,
@@ -46,21 +68,23 @@
         height: 100vh;
       }
     }
-
   
 
   </style>
+  {% block script %}
+
+  {% endblock %}
 </head>
 
 <body>
 
   <!-- Navbar -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+  <nav class="navbar navbar-expand-lg navbar-dark default-color fixed-top">
     <div class="container">
 
       <!-- Brand -->
-      <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
-        <strong class="black-text">THETIMELOOPS</strong>
+      <a class="navbar-brand waves-effect navbar-brand_waves-effect1" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
+        <img src="{% static "img/thetimeloops1.png" %}" style="width: 40px;height: 40px;">
       </a>
 
       <!-- Collapse
@@ -77,69 +101,78 @@
 
         </div>
       -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
+      </button> -->
 
       <!-- Links -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
 
         <!-- Left -->
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item {% block homeactive%} {%endblock%}">
-            <a class="nav-link waves-effect" href="/">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item {% block homeacive%} {%endblock%}">
-            <a class="nav-link waves-effect" href="/placedorder">Your Orders
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          {% if request.user.is_authenticated %}
-          <li class="nav-item {% block homeae%} {%endblock%}">
-            <a class="nav-link waves-effect" href="/logout">Log Out
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          {% else %}
-          <li class="nav-item {% block homee%} {%endblock%}">
-            <a class="nav-link waves-effect" href="/login">Log In
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          {% endif %}
+        <!-- <ul class="navbar-nav mr-auto">
+          <li class="nav-item {% block homeactive%} {%endblock%}"> -->
 
-          {% if request.user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href="">
-              <span class="sr-only">(current)</span>
+            <a class="nav-link_waves-effect" href="/"><i class="fas fa-home fa-lg"></i>
+              <!-- <span class="sr-only">(current)</span> -->
             </a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href="/register">Register
-              <span class="sr-only">(current)</span>
+         <!--  </li> -->
+          <!-- <li class="nav-item {% block homeacive%} {%endblock%}"> -->
+            <a class="nav-link_waves-effect" href="/placedorder"><i class="fas fa-shopping-bag fa-lg"></i>
+              <!-- <span class="sr-only">(current)</span> -->
             </a>
-          </li>
-          {% endif %}
-        </ul>
-      <form action="search" method="GET">
-  <input type="text" name="search">
-</form>     
+         <!--  </li> -->
+        <!-- </ul> -->    
+<!--   <li class="nav-item"> -->
+             <a href="#" onclick="show_on_req()" class="nav-link_waves-effect">
+          <i style="font-size: 19px;" class="fas fa-search fa-lg"></i>
+              </a>
+          <!-- </li> -->
 
+         <!--  <li class="nav-item"> -->
+            <a href="/cart" class="nav-link_waves-effect">
+            
+              <i class="fas fa-shopping-cart fa-lg"></i>
+              <span  class="badge red z-depth-1 mr-1" id="cart_count"> {{count}} </span>
+
+            </a>
         <ul class="navbar-nav nav-flex-icons">
-          <li class="nav-item">
-            <a href="/cart" class="nav-link waves-effect">
-              <span  class="badge red z-depth-1 mr-1"> {{count}} </span>
-              <i class="fas fa-shopping-cart"></i>
-              <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+        
+         <!--  </li> -->
+          <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user fa-lg"></i>
+        </a>
+         <div class="dropdown-menu dropdown-menu-right dropdown-default"
+          aria-labelledby="navbarDropdownMenuLink-333">
+          {% if request.user.is_authenticated %}
+          <!-- <li class="nav-item"> -->
+            <a class="nav-link_waves-effect" href="">
+             My Profile
             </a>
-          </li>
+            <a class="nav-link_waves-effect" href="/logout">Log Out
+              <!-- <span class="sr-only">(current)</span> -->
+            </a>
+         <!--  </li> -->
+          {% else %}
+          <!-- <li class="nav-item"> -->
+            <a class="dropdown-item" href="/login">Login</a>
+            <a class="dropdown-item" href="/register">Register
+              <!-- <span class="sr-only">(current)</span> -->
+            </a>
+          <!-- </li> -->
+          {% endif %}
+
+        </div>
+    </li>
 
         </ul>
-      </div>
+        
+<form action="search" method="GET" class="nav-link_waves-effect" id="show_on" style="display: none;">
+  <input type="text" name="search" style="border-radius: 10px; border:1px solid #ccc; height:32px;">
+  <button type="button" type="submit" class="btn btn-primary btn-sm">Search</button>
+</form> 
 
     </div>
   </nav>
@@ -152,16 +185,6 @@
   <footer class="page-footer text-center font-small mt-4 wow fadeIn">
 
     <!--Call to action-->
-    <div class="pt-4">
-      <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank"
-        role="button">Download MDB
-        <i class="fas fa-download ml-2"></i>
-      </a>
-      <a class="btn btn-outline-white" href="https://mdbootstrap.com/education/bootstrap/" target="_blank" role="button">Start
-        free tutorial
-        <i class="fas fa-graduation-cap ml-2"></i>
-      </a>
-    </div>
     <!--/.Call to action-->
 
     <hr class="my-4">
@@ -205,7 +228,7 @@
     <!--Copyright-->
     <div class="footer-copyright py-3">
       © 2019 Copyright:
-      <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> MDBootstrap.com </a>
+      <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> TheTimeLoops </a>
     </div>
     <!--/.Copyright-->
 
@@ -231,6 +254,16 @@
   </script>
   {%block js%}
   {%endblock%}
+  <script type="text/javascript">
+    function show_on_req(){
+      if(document.getElementById("show_on").style.display=="none"){
+        document.getElementById("show_on").style.display="inline-block";
+      }
+      else{
+        document.getElementById("show_on").style.display="none";
+      }
+    }
+  </script>
 </body>
 
 </html>

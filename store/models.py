@@ -82,5 +82,29 @@ class user_DB(models.Model):
 
     def __str__(self):
         return self.username
-    
+ 
+
+class dyn_slide(models.Model):
+    dyn_img1=models.ImageField(blank=True,upload_to='dynamic_images/')
+    dyn_img2=models.ImageField(blank=True,upload_to='dynamic_images/')
+    dyn_img3=models.ImageField(blank=True,upload_to='dynamic_images/')
+    dysp=models.BooleanField(default=False)
+    title=models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.title
+
+class promocode_available(models.Model):
+    promo=models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.promo
+class promocode_used(models.Model):
+    promo_txt=models.CharField(max_length=30)
+    date_used=models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.promo_txt
+        
+
 

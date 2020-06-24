@@ -1,5 +1,103 @@
 
 {% extends 'basic.html' %}
+{% block style %}
+
+.img-magnifier-containery {
+  position:relative;
+}
+.img-magnifier-glass{
+  position: absolute;
+  border: 1px solid rgb(229,229,229);
+  border-radius:0%;
+  cursor: none;
+  /*Set the size of the magnifier glass:*/
+  width: 200px;
+  height: 200px;
+}
+.small_img{
+  display:inline-block;
+  height:80px;
+  width:80px;
+  margin:15px;
+  border:1px solid #949494;
+  border-radius:20%;
+}
+
+{% endblock %}
+{% block script %}
+<script>
+function magnify(imgID, zoom) {
+  var img, glass, w, h, bw;
+  img = document.getElementById(imgID);
+  /*create magnifier glass:*/
+  check=document.getElementById("img_glass")
+  if(check){
+    check.remove();
+  }
+  glass = document.createElement("DIV");
+  glass.setAttribute("class", "img-magnifier-glass");
+  glass.setAttribute("id", "img_glass");
+  /*insert magnifier glass:*/
+  img.parentElement.insertBefore(glass, img);
+  /*set background properties for the magnifier glass:*/
+  glass.style.backgroundImage = "url('" + img.src + "')";
+  glass.style.backgroundRepeat = "no-repeat";
+  glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+  bw = 3;
+  w = glass.offsetWidth / 2;
+  h = glass.offsetHeight / 2;
+  /*execute a function when someone moves the magnifier glass over the image:*/
+  glass.addEventListener("mousemove", moveMagnifier);
+  img.addEventListener("mousemove", moveMagnifier);
+  glass.addEventListener("mouseout", remove_glass);
+  img.addEventListener("mouseout", remove_glass);
+  /*and also for touch screens:*/
+  glass.addEventListener("touchmove", moveMagnifier);
+  glass.addEventListener("touchend", remove_glass);
+  img.addEventListener("touchmove", moveMagnifier);
+  img.addEventListener("touchend", remove_glass);
+  function remove_glass() {
+
+    glass.style.visibility="hidden";
+
+  }
+  function moveMagnifier(e) {
+    glass.style.visibility="visible";
+
+    var pos, x, y;
+    /*prevent any other actions that may occur when moving over the image*/
+    e.preventDefault();
+    /*get the cursor's x and y positions:*/
+    pos = getCursorPos(e);
+    x = pos.x;
+    y = pos.y;
+    /*prevent the magnifier glass from being positioned outside the image:*/
+    if (x > img.width - (w / zoom)) {x = img.width - (w / zoom);}
+    if (x < w / zoom) {x = w / zoom;}
+    if (y > img.height - (h / zoom)) {y = img.height - (h / zoom);}
+    if (y < h / zoom) {y = h / zoom;}
+    /*set the position of the magnifier glass:*/
+    glass.style.left = (x - w) + "px";
+    glass.style.top = (y - h) + "px";
+    /*display what the magnifier glass "sees":*/
+    glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
+  }
+  function getCursorPos(e) {
+    var a, x = 0, y = 0;
+    e = e || window.event;
+    /*get the x and y positions of the image:*/
+    a = img.getBoundingClientRect();
+    /*calculate the cursor's x and y coordinates, relative to the image:*/
+    x = e.pageX - a.left;
+    y = e.pageY - a.top;
+    /*consider any page scrolling:*/
+    x = x - window.pageXOffset;
+    y = y - window.pageYOffset;
+    return {x : x, y : y};
+  }
+}
+</script>
+{% endblock %}
   {% block body %}
 
   
@@ -14,7 +112,11 @@
         <!--Grid column-->
         <div class="col-md-6 mb-4">
 
-          <img src="{{detinfo.front_image.url}}" class="img-fluid" alt="">
+          <img src="{{detinfo.front_image.url}}" class="img-fluid" alt="" id="main_img">
+ <img src="https://cdn.shopify.com/s/files/1/1660/1593/products/s_1931_3HFsxbJ8adzkPCRKkcJ4nSUg6ZBezRBlack_530x@2x.png?v=1498052214" class="small_img" alt="" onclick="img_change(this.id)" id="main_img1">
+ <img src="{{detinfo.front_image.url}}" class="small_img" alt="" onclick="img_change(this.id)" id="main_img2">
+ <img src="https://www.dhresource.com/f2/albu/g6/M01/6F/23/rBVaR1viUIOAKjveAAGuicvlLx4618.jpg" class="small_img" alt="" onclick="img_change(this.id)" id="main_img3">
+ <img src="https://i.pinimg.com/originals/e8/f2/d0/e8f2d013b1b008d4e7ebc94c803edbcb.png" class="small_img" alt="" onclick="img_change(this.id)" id="main_img4">
 
         </div>
         <!--Grid column-->
@@ -27,7 +129,7 @@
 
             <div class="mb-3">
               <h2><span>{{detinfo.name}}Rs</span></h2>
-              <!--
+              
               <a href="">
                 <span class="badge purple mr-1">Category 2</span>
               </a>
@@ -38,7 +140,7 @@
                 <span class="badge red mr-1">Bestseller</span>
               </a>
             </div>
-          -->
+          
           <hr>
             <p class="lead">
               <span class="mr-1 h5">
@@ -70,12 +172,22 @@
             <form class="d-flex justify-content-left">
               <!-- Default input -->
               
-              <a href="/checkout/{{detinfo.product_id}}" class="btn btn-primary btn-md my-0" type="submit">Buy Now
+              <a href="/checkout/{{detinfo.product_id}}" class="btn btn-primary btn-sm" type="submit">Buy Now
                 
               </a>
               <a href="/products/{{detinfo.category}}" class="btn btn-secondary btn-sm">Browse more {{detinfo.category}} products</a>
             </form>
-
+            <br>
+<div class="card" style="width: 18rem;">
+  <div class="card-header">
+    What's in the box
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">1. Discount Coupon</li>
+    <li class="list-group-item">2. Signed-bill</li>
+    <li class="list-group-item">3. Printed T-Shirt</li>
+  </ul>
+</div>
           </div>
           <!--Content-->
 
@@ -92,7 +204,7 @@
 
         <!--Grid column-->
         <div class="col-md-6 text-center">
-<!--
+
           <h4 class="my-4 h4">Additional information</h4>
 
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta odit
@@ -131,9 +243,19 @@
         
 
       </div>
-      <!--Grid row-->
+      Grid row 
 
     </div>
   </main>
- 
+ <script type="text/javascript">
+function img_change(id){
+  document.getElementById("main_img").src=document.getElementById(id).src;
+magnify("main_img", 2);
+}
+ </script>
+ <script>
+  if(screen.width>700){
+magnify("main_img", 2);
+  }
+ </script>
   {% endblock %}
