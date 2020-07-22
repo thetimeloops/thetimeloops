@@ -1,0 +1,114 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block body %}
+  <!-- Navbar -->
+
+  <!--Main layout-->
+  <main class="mt-5 pt-4">
+    <div class="container dark-grey-text mt-5">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <img src="{{detinfo.front_image.url}}" class="img-fluid" alt="">
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        
+      <!--Grid row-->
+
+      <hr>
+
+     
+      <div class="row d-flex justify-content-center wow fadeIn">
+        
+       <!---
+        <div class="col-md-8 text-center">
+
+          <h2 class= h1 text-center">Tracker</h2>
+
+      <hr>
+          <p>
+            </p>
+
+          </p>
+        </div>
+        
+
+      </div>
+       
+    -->
+
+      <div class="row wow fadeIn text-center float-center">
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-12 mb-4">
+          <h2 class="my-1 h2 text-center">Product Image</h2>
+          <hr>
+          <img src="{{prod.order_image.url}}" class="img-fluid" alt="">
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+       
+
+
+        <div class="alert alert-warning col-lg-4 col-md-12 mb-4">
+
+                
+        <h2 class="my-1 h2 text-center">COVID-19</h2>
+        <small>Instructions to take while accepting order</small>
+        <hr>
+        <div class="float-left my-3">
+          <ul class="text-left">
+            <li>Wash your hands before and after accepting order.</li>
+            <hr>
+            <li>Maintain distance while accepting order.
+            </li>
+            <hr>
+            <li>Sanitize the outer covering of box using sanitizer.</li>
+            <hr>
+            <li>We have properly sanitized and packed your order inside so don't worry.</li>
+            <hr>
+
+          </ul>
+
+        </div>
+ 
+         </div>
+
+
+        <div class="col-lg-4 col-md-12 mb-4">
+
+          <h2 class="my-1 h2 text-center">Product Details</h2>
+           <hr>
+           <p class="text-muted">Name : <b>{{prod.product_name}}</b></p>
+           <p class="text-muted">Quantity : <b>{{prod.quantity}} Units</b></p>
+           <p class="text-muted">Amount to pay: <b>{{prod.amount}} Rs</b></p>
+           <p class="text-muted">Order Date : <b>{{prod.order_date}}</b></p>
+           <p class="text-muted">Expected Delivery : <b>{{prod.delivery_date}}</b></p>
+           <p class="text-muted">Payment Mode : <b>COD </b></p>
+           {% if prod.ordered %}
+           <p class="text-muted">Order Status: <b>DELIVERED TO YOU :-)</b></p>
+           {% elif prod.processing %}
+           <p class="text-muted">Order Status: <b>NOT DELIVERED YET :-(</b></p>
+           {% elif prod.cancelled %}
+           <p class="text-muted">Order Status: <b>CANCELLED :-(</b></p>
+           {% endif %}
+
+  
+          </div>
+      </div>
+      <!--Grid row-->
+
+    </div>
+  </main>
+  <!--Main layout-->
+{% endblock %}

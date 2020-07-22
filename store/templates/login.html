@@ -1,38 +1,31 @@
-{%extends 'basic.html' %}
+{% extends 'basic.html' %}
 {% block body %}
 
-<!-- Default form login -->
-<div class="container my-5">
-<form class="text-center border border-light p-5" method="POST" action="/login">
-    {% csrf_token %}
-    <p class="h2 mb-4">Log in</p>
 
-    <div class="alert alert-danger">{{err}}</div>
-    <!-- Email -->
-    <input type="text" id="defaultLoginFormEmail" name="username" class="form-control mb-4" placeholder="Username">
-
-    <!-- Password -->
-    <input type="password" id="defaultLoginFormPassword" name="password" class="form-control mb-4" placeholder="Password">
-
-    <div class="d-flex justify-content-around">
-        
-        <div>
-            <!-- Forgot password -->
-            <a href="">Forgot password?</a>
+   <!-- Contact Form Begin -->
+   <div class="contact-form spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="contact__form__title">
+                    <h2>LOGIN HERE</h2>
+                </div>
+            </div>
         </div>
+        <form action="/login" method="POST">{% csrf_token %}
+            <div class="text-center">
+                <div class="col-lg-12 col-md-6 text-center">
+                    <input type="text" name="username" placeholder="Your Username">
+                </div>
+                <div class="col-lg-12 col-md-6 text-center">
+                    <input type="password" name="password" placeholder="Your Password">
+                </div>
+                <div class="col-lg-12 text-center">
+                    
+                    <button type="submit" class="site-btn">LOGIN</button>
+                </div>
+            </div>
+        </form>
     </div>
-
-    <!-- Sign in button -->
-    <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
-
-    <!-- Register -->
-    <p>Not a member?
-        <a href="/register">Register</a>
-    </p>
-
-    <!-- Social login -->
-    
-</form>
-<!-- Default form login -->
 </div>
 {% endblock %}

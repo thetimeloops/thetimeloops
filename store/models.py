@@ -44,6 +44,9 @@ class cart_DB(models.Model):
     category=models.CharField(max_length=100,choices=gender_choice)
     dissprice=models.IntegerField()
     cart_image=models.ImageField(blank=True)
+    quantity=models.IntegerField(default=1)
+    amount=models.IntegerField(blank=True)
+    cart_add=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.username
@@ -54,13 +57,18 @@ class order_DB(models.Model):
     username=models.CharField(max_length=100)
     email=models.CharField(max_length=100)
     product_id=models.CharField(max_length=100)
-    name=models.CharField(max_length=1000)
+    firstname=models.CharField(max_length=1000)
+    lastname=models.CharField(max_length=1000)
     size=models.CharField(max_length=20)
+    price=models.CharField(max_length=100)
     address=models.CharField(max_length=1000)
     phone=models.CharField(max_length=20)
     payment_type=models.CharField(max_length=20)
     quantity=models.IntegerField()
+    color=models.CharField(max_length=100)
     amount=models.IntegerField()
+    city=models.CharField(max_length=1000)
+    state=models.CharField(max_length=1000)
     state_zip=models.CharField(max_length=1000)
     order_date=models.DateTimeField(auto_now_add=True)
     ordered=models.BooleanField(default=False)
@@ -69,6 +77,7 @@ class order_DB(models.Model):
     order_status=models.CharField(max_length=1000)
     delivery_date=models.CharField(max_length=100,blank=True)
     order_image=models.ImageField(blank=True)
+    
 
     def __str__(self):
         return self.username    

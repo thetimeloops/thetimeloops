@@ -1,242 +1,238 @@
 {% extends 'basic.html' %}
 {% block body %}
-  <!-- Navbar -->
-<!--Carousel Wrapper-->
-<div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
+ 
 
-  <!--Indicators-->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-1z" data-slide-to="1"></li>
-    <li data-target="#carousel-example-1z" data-slide-to="2"></li>
-  </ol>
-  <!--/.Indicators-->
-
-  <!--Slides-->
-  <div class="carousel-inner" role="listbox">
-
-    <!--First slide-->
-    <div class="carousel-item active">
-      <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%282%29.jpg'); background-repeat: no-repeat; background-size: cover;">
-
-        <!-- Mask & flexbox options-->
-        <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
-
-          <!-- Content -->
-          <div class="text-center white-text mx-5 wow fadeIn">
-            <h1 class="mb-4">
-              <strong>{{slug}}</strong>
-            </h1>
-
-            <p>
-              <strong>Best & free guide of responsive web design</strong>
-            </p>
-
-            <p class="mb-4 d-none d-md-block">
-              <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-                written versions
-                available. Create your own, stunning website.</strong>
-            </p>
-
-            <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Start
-              free tutorial
-              <i class="fas fa-graduation-cap ml-2"></i>
-            </a>
-          </div>
-          <!-- Content -->
-
-        </div>
-        <!-- Mask & flexbox options-->
-
-      </div>
-    </div>
-    <!--/First slide-->
-
-    <!--Second slide-->
-    <div class="carousel-item">
-      <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%283%29.jpg'); background-repeat: no-repeat; background-size: cover;">
-
-        <!-- Mask & flexbox options-->
-        <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
-
-          <!-- Content -->
-          <div class="text-center white-text mx-5 wow fadeIn">
-            <h1 class="mb-4">
-              <strong>Learn Bootstrap 4 with MDB</strong>
-            </h1>
-
-            <p>
-              <strong>Best & free guide of responsive web design</strong>
-            </p>
-
-            <p class="mb-4 d-none d-md-block">
-              <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-                written versions
-                available. Create your own, stunning website.</strong>
-            </p>
-
-            <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Start
-              free tutorial
-              <i class="fas fa-graduation-cap ml-2"></i>
-            </a>
-          </div>
-          <!-- Content -->
-
-        </div>
-        <!-- Mask & flexbox options-->
-
-      </div>
-    </div>
-    <!--/Second slide-->
-
-    <!--Third slide-->
-    <div class="carousel-item">
-      <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%285%29.jpg'); background-repeat: no-repeat; background-size: cover;">
-
-        <!-- Mask & flexbox options-->
-        <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
-
-          <!-- Content -->
-          <div class="text-center white-text mx-5 wow fadeIn">
-            <h1 class="mb-4">
-              <strong>Learn Bootstrap 4 with MDB</strong>
-            </h1>
-
-            <p>
-              <strong>Best & free guide of responsive web design</strong>
-            </p>
-
-            <p class="mb-4 d-none d-md-block">
-              <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-                written versions
-                available. Create your own, stunning website.</strong>
-            </p>
-
-            <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Start
-              free tutorial
-              <i class="fas fa-graduation-cap ml-2"></i>
-            </a>
-          </div>
-          <!-- Content -->
-
-        </div>
-        <!-- Mask & flexbox options-->
-
-      </div>
-    </div>
-    <!--/Third slide-->
-
-  </div>
-  <!--/.Slides-->
-
-  <!--Controls-->
-  <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-  <!--/.Controls-->
-
-</div>
-<!--/.Carousel Wrapper-->
-
-<!--Main layout-->
-<main>
-  <div class="container">
-
-    <!--Navbar-->
-    
-    <!--/.Navbar-->
-    <div class="view my-5" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%283%29.jpg'); background-repeat: no-repeat; background-size: cover;">     
-
-        <div class="text-center black-text mx-5 wow fadeIn">
-                      <h1 class="mb-8">
-                        <strong>YOUR CART</strong>
-                      </h1>
-                      </div>
-                      </div>
-
-    <!--Section: Products v.3-->
-    <section class="text-center mb-4">
-
-      <!--Grid row-->
-      <div class="row wow fadeIn">
-
-        <!--Grid column-->
-        {% for prod in all_cart %}
-        <div class="col-lg-3 "> 
-
-          <!--Card-->
-          <form method="post" action="/cartremove" >
-            {% csrf_token %}
-          <div class="card">
-
-            <!--Card image-->
-            <div class="view overlay">
-              <img src="{{prod.cart_image.url}}" class="card-img-top"
-                alt="">
-              <a>
-                <div class="mask rgba-white-slight"></div>
-              </a>
+    <!-- Shoping Cart Section Begin -->
+    <section class="shoping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="shoping__product">Products</th>
+                                    <th>Price</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               
+                                {% for cart in all_cart %}
+                                <tr>
+                                    <td class="shoping__cart__item">
+                                        <img src="/media/{{cart.cart_image}}" height="150h" width="200h" alt="">
+                                       
+                                    </td>
+                                    <td class="shoping__cart__price">
+                                        {{cart.dissprice}} Rs
+                                    </td>
+                                    <!---
+                                    <td class="shoping__cart__quantity">
+                                        <div class="quantity">
+                                            <div class="pro-qty">
+                                                <input type="text"  name="quantity" class="quant_cart" value="1">
+                                            </div>
+                                        </div>
+                                    </td>
+                                -->
+                                 
+                                    <td class="shoping__cart__item__close">
+                                    <a href="" class="cartremove btn btn-danger btn-sm-1" data-id="{{cart.product_id}}"> Remove</a>
+                                    
+                                    </td>
+                                    <td class="shoping__cart__item__close">
+                                    <a href="/prodview/{{cart.product_id}}" class="btn btn-info btn-sm-1" data-id="{{cart.product_id}}">View </a>
+                                </td>
+                                <td class="shoping__cart__item__close">
+                                    <a href="/checkout/{{cart.product_id}}" class="btn btn-success btn-sm-1" data-id="{{cart.product_id}}">Buy</a>
+                                </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <!--Card image-->
-            <p id="message"></p>
-            <!--Card content-->
-            <div class="card-body text-center">
-              <!--Category & Title-->
-              <a href="/prodview/{{prod.product_id}}" class="grey-text">
-                <h5>{{prod.name}}</h5>
-              </a>
-              <h5>
-                <strong>
-                  <a href="" class="dark-grey-text">Tshirt
-                    {% if prod.new %}
-                    <span class="badge badge-pill danger-color">NEW</span>
-                    {% elif prod.bestseller %}
-                    <span class="badge badge-pill danger-color">BESTSELLER</span>
-                    {% endif %}
-                  </a>
-                </strong>
-              </h5>
-
-              <h4 class="font-weight-bold blue-text">
-                <strong>{{prod.dissprice}}Rs</strong>
-              </h4>
-              <h4 class="font-weight-bold red-text">
-                <del><small>{{prod.price}}Rs</del></small>
-              </h4>
-
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__btns">
+                        <a href="/" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+                    </div>
+                </div>
+                <!---
+                <div class="col-lg-6">
+                    <div class="shoping__continue">
+                        <div class="shoping__discount">
+                            <h5>Discount Codes</h5>
+                            <form action="#">
+                                <input type="text" placeholder="Enter your coupon code">
+                                <button type="submit" class="site-btn">APPLY COUPON</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="shoping__checkout">
+                        <h5>Cart Total</h5>
+                        <ul>
+                            <li>Subtotal <span>$454.98</span></li>
+                            <li>Total <span>$454.98</span></li>
+                        </ul>
+                        <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                    </div>
+                </div>
             </div>
-            
-            <input type="hidden" class="product_id" name="product_id" value="{{prod.product_id}}">
-            <!--Card content-->
-           
-              <a href="/checkout/{{prod.product_id}}" class="btn btn-primary " >Proceed To buy</a>
-              <button type="submit" class="btn btn-danger " >Remove Product</button>
-           
-
-            </div>
-          <!--Card-->
-
+        -->
         </div>
-      </form>
-    
-      {%endfor%}
-
-      
-      </div>
-
     </section>
-    <!--Section: Products v.3-->
+
+    <!-- Shoping Cart Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__about__logo">
+                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        </div>
+                        <ul>
+                            <li>Address: 60-49 Road 11378 New York</li>
+                            <li>Phone: +65 11.188.888</li>
+                            <li>Email: hello@colorlib.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                    <div class="footer__widget">
+                        <h6>Useful Links</h6>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">About Our Shop</a></li>
+                            <li><a href="#">Secure Shopping</a></li>
+                            <li><a href="#">Delivery infomation</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Our Sitemap</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="#">Who We Are</a></li>
+                            <li><a href="#">Our Services</a></li>
+                            <li><a href="#">Projects</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Innovation</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer__widget">
+                        <h6>Join Our Newsletter Now</h6>
+                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <form action="#">
+                            <input type="text" placeholder="Enter your mail">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
+                        <div class="footer__widget__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer__copyright">
+                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+                        <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 
-  </div>
-  
-</main>
+{% endblock %}
+{% block js%}
+<script type="text/javascript">
 
+    $('.cartremove').bind('click', function(e) { 
+        e.preventDefault()  
+        product_id = $(this).attr('data-id')        
+        console.log(product_id)
+        
+        data = {
+            product_id: product_id
+            
+        }
+        $.ajax({
+         'url' : '/cartremove' ,
+         'type' : 'GET',
+        'data':data   ,      
 
-      
-{%endblock%}
+         'success' : function(response) {
+            $(".shoping__cart__table").load(' .shoping__cart__table');
+            /*
+            $(".shoping__cart__item").hide();
+            $(".shoping__cart__item").fadeIn(1000);
+            */
+            
+          
+         },
+         error: function(response){ 
+             console.log(response) 
+             }
+
+            
+         });
+         
+      });
+            /*CART UPDATE*/
+      $('.cartupdate').bind('click', function(e) { 
+        e.preventDefault()
+        
+        var quant_cart;
+        cart_id = $(this).attr('data-id') 
+        /*
+        quantity= $('.quant_cart').val()*/
+        $('.quant_cart').each(function(){
+           quant_cart = $('.quant_cart').val();
+        });
+        console.log(quant_cart)
+        
+        data = {
+            cart_id: cart_id,
+            quant_cart : quant_cart,
+        }
+        $.ajax({
+         'url' : '/cartupdate' ,
+         'type' : 'GET',
+        'data':data   ,      
+
+         'success' : function(response) {
+             
+            window.location.href="/cart";
+            
+            
+            
+           console.log(response)
+           
+            
+          
+         },
+         
+         error: function(response){ 
+             console.log(response) 
+             }
+
+            
+         });
+         
+      });
+    </script>
+{% endblock js%}

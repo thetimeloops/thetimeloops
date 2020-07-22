@@ -1,340 +1,422 @@
-{% extends 'basic.html' %}
+{% extends 'basic.html'%}
 {% block body %}
-  <!-- Navbar -->
-<!--Carousel Wrapper-->
-<div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
 
-  <!--Indicators-->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-1z" data-slide-to="1"></li>
-    <li data-target="#carousel-example-1z" data-slide-to="2"></li>
-  </ol>
-  <!--/.Indicators-->
-
-  <!--Slides-->
-  <div class="carousel-inner" role="listbox">
-
-    <!--First slide-->
-    <div class="carousel-item active">
-      <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%282%29.jpg'); background-repeat: no-repeat; background-size: cover;">
-
-        <!-- Mask & flexbox options-->
-        <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
-
-          <!-- Content -->
-          <div class="text-center white-text mx-5 wow fadeIn">
-            <h1 class="mb-4">
-              <strong>{{slug}}</strong>
-            </h1>
-
-            <p>
-              <strong>Best & free guide of responsive web design</strong>
-            </p>
-
-            <p class="mb-4 d-none d-md-block">
-              <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-                written versions
-                available. Create your own, stunning website.</strong>
-            </p>
-
-            <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Start
-              free tutorial
-              <i class="fas fa-graduation-cap ml-2"></i>
-            </a>
+<div class="modal fade top" id="modalCookie1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true" data-backdrop="true">
+    <div class="modal-dialog modal-frame modal-top modal-notify modal-info" role="document">
+      <!--Content-->
+      <div class="modal-content">
+        <!--Body-->
+        <div class="modal-body">
+          <div class="row d-flex justify-content-center align-items-center">
+  
+            <p class="pt-3 pr-2">You have to login to add products in cart.</p>
+              <form action="/login">
+            <button type="submit" class="btn btn-primary">Login<i class="fas fa-user ml-1"></i></button>
+              </form>
+              <form action="/">
+            <button type="submit" class="btn btn-secondary">I just want to explore </button>
           </div>
-          <!-- Content -->
-
         </div>
-        <!-- Mask & flexbox options-->
-
       </div>
+      <!--/.Content-->
     </div>
-    <!--/First slide-->
-
-    <!--Second slide-->
-    <div class="carousel-item">
-      <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%283%29.jpg'); background-repeat: no-repeat; background-size: cover;">
-
-        <!-- Mask & flexbox options-->
-        <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
-
-          <!-- Content -->
-          <div class="text-center white-text mx-5 wow fadeIn">
-            <h1 class="mb-4">
-              <strong>Learn Bootstrap 4 with MDB</strong>
-            </h1>
-
-            <p>
-              <strong>Best & free guide of responsive web design</strong>
-            </p>
-
-            <p class="mb-4 d-none d-md-block">
-              <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-                written versions
-                available. Create your own, stunning website.</strong>
-            </p>
-
-            <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Start
-              free tutorial
-              <i class="fas fa-graduation-cap ml-2"></i>
-            </a>
-          </div>
-          <!-- Content -->
-
-        </div>
-        <!-- Mask & flexbox options-->
-
-      </div>
-    </div>
-    <!--/Second slide-->
-
-    <!--Third slide-->
-    <div class="carousel-item">
-      <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%285%29.jpg'); background-repeat: no-repeat; background-size: cover;">
-
-        <!-- Mask & flexbox options-->
-        <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
-
-          <!-- Content -->
-          <div class="text-center white-text mx-5 wow fadeIn">
-            <h1 class="mb-4">
-              <strong>Learn Bootstrap 4 with MDB</strong>
-            </h1>
-
-            <p>
-              <strong>Best & free guide of responsive web design</strong>
-            </p>
-
-            <p class="mb-4 d-none d-md-block">
-              <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-                written versions
-                available. Create your own, stunning website.</strong>
-            </p>
-
-            <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Start
-              free tutorial
-              <i class="fas fa-graduation-cap ml-2"></i>
-            </a>
-          </div>
-          <!-- Content -->
-
-        </div>
-        <!-- Mask & flexbox options-->
-
-      </div>
-    </div>
-    <!--/Third slide-->
-
   </div>
-  <!--/.Slides-->
-
-  <!--Controls-->
-  <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-  <!--/.Controls-->
-
-</div>
-<!--/.Carousel Wrapper-->
-
-<!--Main layout-->
-<main>
-  <div class="container">
-
-    <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
-
-      <!-- Navbar brand -->
-      <span class="navbar-brand">Categories:</span>
-
-      <!-- Collapse button -->
-      
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-        aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <!-- Collapsible content -->
-      <div class="collapse navbar-collapse" id="basicExampleNav">
-
-        <!-- Links -->
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">All
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Shirts</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Sport wears</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Outwears</a>
-          </li>
-
-        </ul>
-        <!-- Links -->
-
-        <form class="form-inline">
-          <div class="md-form my-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-          </div>
-        </form>
-      </div>
-      <!-- Collapsible content -->
-
-    </nav>
-    <!--/.Navbar-->
-
-    <!--Section: Products v.3-->
-    <section class="text-center mb-4">
-
-      <!--Grid row-->
-      <div class="row wow fadeIn">
-
-        <!--Grid column-->
-        {% for prod in product_info %}
-        <div class="col-lg-3 col-md-6 mb-4"> 
-
-          <!--Card-->
-          <form method="POST" action="/cartadd" id="add_cart">
-            {% csrf_token %}
-          <div class="card">
-
-            <!--Card image-->
-            <div class="view overlay">
-              <img src="{{prod.front_image.url}}" class="card-img-top"
-                alt="">
-              <a>
-                <div class="mask rgba-white-slight"></div>
-              </a>
-            </div>
-            <!--Card image-->
-            <p id="message"></p>
-            <!--Card content-->
-            <div class="card-body text-center">
-              <!--Category & Title-->
-              <a href="/prodview/{{prod.product_id}}" class="grey-text">
-                <h5>{{prod.name}}</h5>
-              </a>
-              <h5>
-                <strong>
-                  <a href="" class="dark-grey-text">Tshirt
-                    {% if prod.new %}
-                    <span class="badge badge-pill danger-color">NEW</span>
-                    {% elif prod.bestseller %}
-                    <span class="badge badge-pill danger-color">BESTSELLER</span>
-                    {% endif %}
-                  </a>
-                </strong>
-              </h5>
-
-              <h4 class="font-weight-bold blue-text">
-                <strong>{{prod.dissprice}}Rs</strong>
-              </h4>
-              <h4 class="font-weight-bold red-text">
-                <del><small>{{prod.price}}Rs</del></small>
-              </h4>
-
-            </div>
-            
-            <input type="hidden" class="product_id" name="product_id" id="hid_id"value="{{prod.product_id}}">
-            <!--Card content-->
-
-              <button type="submit"  class="btn btn-primary">Add To Cart</button>
-              <a href="/prodview/{{prod.product_id}}" class="btn btn-dark">See Product</a>
-
-            </div>
-          <!--Card-->
-
-        </div>
-      </form>
     
-      {%endfor%}
-        <!--Grid column-->
 
-        <!--Grid column-->
-       
-      </div>
-      <!--Grid row-->
+    <!-- Product Section Begin -->
+    <section class="product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-5">
+                    <div class="sidebar">
+                        <div class="sidebar__item">
+                          
+                        </div>
+                        <!---
+                        <div class="sidebar__item">
+                            <h4>Price</h4>
+                            <div class="price-range-wrap">
+                                <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
+                                    data-min="199" data-max="1999">
+                                    <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                                </div>
+                                <div class="range-slider">
+                                    <div class="price-input">
+                                        <input type="text" id="minamount">
+                                        <input type="text" id="maxamount">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    -->
+                        <div class="sidebar__item sidebar__item__color--option">
+                            <h4>Colors</h4>
+                            <div class="sidebar__item__color sidebar__item__color--white">
+                                <label for="white">
+                                    White
+                                    <input type="radio" id="white">
+                                </label>
+                            </div>
+                            <div class="sidebar__item__color sidebar__item__color--gray">
+                                <label for="gray">
+                                    Gray
+                                    <input type="radio" id="gray">
+                                </label>
+                            </div>
+                            <div class="sidebar__item__color sidebar__item__color--red">
+                                <label for="red">
+                                    Red
+                                    <input type="radio" id="red">
+                                </label>
+                            </div>
+                            <div class="sidebar__item__color sidebar__item__color--black">
+                                <label for="black">
+                                    Black
+                                    <input type="radio" id="black">
+                                </label>
+                            </div>
+                            <div class="sidebar__item__color sidebar__item__color--blue">
+                                <label for="blue">
+                                    Blue
+                                    <input type="radio" id="blue">
+                                </label>
+                            </div>
+                            <div class="sidebar__item__color sidebar__item__color--green">
+                                <label for="green">
+                                    Green
+                                    <input type="radio" id="green">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="sidebar__item">
+                            <h4>Product Options</h4>
+                            <div class="sidebar__item__size">
+                            <h5 class="sidebar_item my-2"><i><u>Price Filter</u></i></h5>
+                                <label for="large">
+                                    High To Low
+                                    <input type="radio" id="large">
+                                </label>
+                            </div>
+                            <div class="sidebar__item__size">
+                                <label for="medium">
+                                    Low To High
+                                    <input type="radio" id="medium">
+                                </label>
+                            </div>
+                           
+                        </div>
+                        <!---
+                        <div class="sidebar__item">
+                            <div class="latest-product__text">
+                                <h4>Latest Products</h4>
+                                <div class="latest-product__slider owl-carousel">
+                                    <div class="latest-prdouct__slider__item">
+                                        <a href="#" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <img src="img/latest-product/lp-1.jpg" alt="">
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6>Crab Pool Security</h6>
+                                                <span>$30.00</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <img src="img/latest-product/lp-2.jpg" alt="">
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6>Crab Pool Security</h6>
+                                                <span>$30.00</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <img src="img/latest-product/lp-3.jpg" alt="">
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6>Crab Pool Security</h6>
+                                                <span>$30.00</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="latest-prdouct__slider__item">
+                                        <a href="#" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <img src="img/latest-product/lp-1.jpg" alt="">
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6>Crab Pool Security</h6>
+                                                <span>$30.00</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <img src="img/latest-product/lp-2.jpg" alt="">
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6>Crab Pool Security</h6>
+                                                <span>$30.00</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <img src="img/latest-product/lp-3.jpg" alt="">
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6>Crab Pool Security</h6>
+                                                <span>$30.00</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    -->
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-7">
+                    <div class="product__discount">
+                        <div class="section-title product__discount__title">
+                            <h2>Sale Off</h2>
+                        </div>
+                        <div class="row">
+                            <div class="product__discount__slider owl-carousel">
+                                {% for prod in product_info %}
+                                <div class="col-lg-4">
+                                    <div class="product__discount__item">
+                                        <div class="product__discount__item__pic set-bg"
+                                            data-setbg="/media/{{prod.front_image}}">
+                                            <div class="product__discount__percent">-20%</div>
+                                            <ul class="product__item__pic__hover">
+                                                
+                                                {% if request.user.is_authenticated %}
+                                                <li><a href="" data-id="{{prod.product_id}}" class="cardaddbutton" ><i class="fa fa-shopping-cart"></i></a></li>
+                                                <li><a href="/prodview/{{prod.product_id}}"><i class="fa fa-eye"></i></a></li>
+                                                {% else %}
+                                                
+                                                 <li><button type="button"  data-toggle="modal" data-target="#modalCookie1" ><i class="fa fa-shopping-cart"></i></button></li>
+                                                <li><a href="/prodview/{{prod.product_id}}"><i class="fa fa-eye"></i></a></li>
+                                                {% endif %}
+                                            
+                                        </ul>
+                                        </div>
+                                        <div class="product__discount__item__text">
+                                            <span>Dried Fruit</span>
+                                            <h5><a href="#">{{prod.name}}</a></h5>
+                                            <div class="product__item__price">{{prod.dissprice}} Rs <span>{{prod.price}}Rs</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter__item">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-5">
+                                <div class="filter__sort">
+                                    <span>Sort By</span>
+                                    <select>
+                                        <option value="0">Default</option>
+                                        <option value="0">Default</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <div class="filter__found">
+                                    <h6><span>16</span> Products found</h6>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-3">
+                                <div class="filter__option">
+                                    <span class="icon_grid-2x2"></span>
+                                    <span class="icon_ul"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for prod in all_product %}
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="/media/{{prod.front_image}}">
+                                    <ul class="product__item__pic__hover">
+                                      
+                                        {% if request.user.is_authenticated %}
+                                        <li><a href="" data-id="{{prod.product_id}}" class="cardaddbutton" ><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="/prodview/{{prod.product_id}}"><i class="fa fa-eye"></i></a></li>
+                                        {% else %}
+                                        
+                                         <li><button type="button"  data-toggle="modal" data-target="#modalCookie1" ><i class="fa fa-shopping-cart"></i></button></li>
+                                        <li><a href="/prodview/{{prod.product_id}}"><i class="fa fa-eye"></i></a></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="#">Crab Pool Security</a></h6>
+                                    <h5>$30.00</h5>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
 
+                 
+                </div>
+            </div>
+        </div>
     </section>
-    <!--Section: Products v.3-->
-
-    <!--Pagination-->
-    <nav class="d-flex justify-content-center wow fadeIn">
-      <ul class="pagination pg-blue">
-
-        <!--Arrow left-->
-        <li class="page-item disabled">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
-          </a>
-        </li>
-
-        <li class="page-item active">
-          <a class="page-link" href="#">1
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">3</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">4</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">5</a>
-        </li>
-
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <!--Pagination-->
-
+    <!-- Product Section End -->
+    <div class="modal fade right" id="mess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
+      <!--Content-->
+      <div class="modal-content">
+        <!--Header-->
+        <div class="modal-header">
+          <p class="heading">Product Already In Cart
+          </p>
+  
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="white-text">&times;</span>
+          </button>
+        </div>
+  
+        <!--Body-->
+        <div class="modal-body">
+  
+          <div class="row">
+            <div class="col-3">
+              <p></p>
+              <p class="text-center"><i class="fas fa-shopping-cart fa-2x"></i></p>
+            </div>
+            <p class="text-center">Lets Buy those awesome choices of yours!</p>
+          </div>
+        </div>
+  
+        <!--Footer-->
+        <div class="modal-footer justify-content-center">
+        <form action="/cart">
+          <button type="submit" class="btn btn-info">Go to checkout</button>
+          </form>
+          <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Cancel</a>
+        </div>
+      </div>
+      <!--/.Content-->
+    </div>
   </div>
-</main>
-      <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script type="text/javascript">
-    $('#add_cart').submit(function(){
-      var token = '{{csrf_token}}';
-    var catid;
-    catid = document.getElementById("hid_id").value;
-    catid=parseInt(catid);
-    $.ajax(
-    { headers: { "X-CSRFToken": token },
-        type:"POST",
-        url: "{% url 'cartadd' %}",
-        data:{
-                 post_data: catid
-        },
-        success: function( data ) 
-        {
-         var x=document.getElementById("cart_count").innerHTML;
-          x=parseInt(x);
-          x+=1
-          document.getElementById("cart_count").innerHTML=x;
+    <!-- Footer Section Begin -->
+    <footer class="footer spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__about__logo">
+                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        </div>
+                        <ul>
+                            <li>Address: 60-49 Road 11378 New York</li>
+                            <li>Phone: +65 11.188.888</li>
+                            <li>Email: hello@colorlib.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                    <div class="footer__widget">
+                        <h6>Useful Links</h6>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">About Our Shop</a></li>
+                            <li><a href="#">Secure Shopping</a></li>
+                            <li><a href="#">Delivery infomation</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Our Sitemap</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="#">Who We Are</a></li>
+                            <li><a href="#">Our Services</a></li>
+                            <li><a href="#">Projects</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Innovation</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer__widget">
+                        <h6>Join Our Newsletter Now</h6>
+                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <form action="#">
+                            <input type="text" placeholder="Enter your mail">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
+                        <div class="footer__widget__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer__copyright">
+                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+                        <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+  
+{% endblock %}
+
+{% block js%}
+<script type="text/javascript">
+  
+    $('.cardaddbutton').bind('click', function(e) { 
+        e.preventDefault()  
+        product_id = $(this).attr('data-id')        
+        console.log(product_id)
+        
+        data = {
+            product_id: product_id
         }
-     })
-});
+        $.ajax({
+         'url' : '/cartadd' ,
+         'type' : 'GET',
+        'data':data   ,      
+         'success' : function(response) {
+            var res= jQuery.parseJSON(response);
+            if (res.logerr!=undefined){
+                alert("ALREADY IN CART")
+                $('#mess').modal('show')
+            }
+            
+            else if (res.logged!=undefined){
+             alert("ADDED TO CART")
+             $("mess").html("ADDED TO CART")
+             $(".humberger__menu__cart").load(" .humberger__menu__cart");
 
-    </script> -->
+            }
+           
+          
+         },
+         error: function(response){ 
+             console.log(response) 
+             }
 
-{%endblock%}
+            
+         });
+         
+      });
+  
+   </script>
+
+{% endblock %}

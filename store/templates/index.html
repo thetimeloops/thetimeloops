@@ -1,0 +1,379 @@
+{% extends 'basic.html' %}
+{% block body %}
+{% load static %}
+   
+    <!-- Hero Section Begin -->
+    <div class="modal fade top" id="modalCookie1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true" data-backdrop="true">
+    <div class="modal-dialog modal-frame modal-top modal-notify modal-info" role="document">
+      <!--Content-->
+      <div class="modal-content">
+        <!--Body-->
+        <div class="modal-body">
+          <div class="row d-flex justify-content-center align-items-center">
+  
+            <p class="pt-3 pr-2">You have to login to add products in cart.</p>
+              <form action="/login">
+            <button type="submit" class="btn btn-primary">Login<i class="fas fa-user ml-1"></i></button>
+              </form>
+              <form action="/">
+            <button type="submit" class="btn btn-secondary">I just want to explore </button>
+          </div>
+        </div>
+      </div>
+      <!--/.Content-->
+    </div>
+  </div>
+    
+    <!-- Categories Section Begin -->
+
+    <section class="categories ">
+        <div class="container">
+          <div class="section-title">
+              <h2>Most Buyed</h2>
+          </div>
+
+            <div class="row">
+
+                <div class="categories__slider owl-carousel">
+                {%for front in x_img %}
+                    <div class="col-lg-3">
+                        
+                      <div class="categories__item set-bg" data-setbg="/media/{{front.front_image}}">
+                           
+                            <h5><a href="#">Only at {{front.dissprice}} Rs</a></h5>
+
+                          </div>
+                        
+
+                    </div>
+                    {%endfor%}
+                  </div>
+                  </div>
+
+        </div>
+    </section>
+    <!-- Categories Section End -->
+
+    <!-- Featured Section Begin -->
+    <section class="featured spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>Featured Product</h2>
+                       
+                    </div>
+                    <div class="featured__controls">
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="row featured__filter">
+                {%for front in x_img  %}
+                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                    <div class="featured__item">
+                    
+                        <div class="featured__item__pic set-bg" data-setbg="/media/{{front.front_image}}">
+                        
+                            <ul class="featured__item__pic__hover">
+                                {% if request.user.is_authenticated %}
+                                <li><a href="" data-id="{{front.product_id}}" class="cardaddbutton" ><i class="fa fa-shopping-cart"></i></a></li>
+                                <li><a href="/prodview/{{front.product_id}}"><i class="fa fa-eye"></i></a></li>
+                                {% else %}
+                                
+                                 <li><button type="button"  data-toggle="modal" data-target="#modalCookie1" ><i class="fa fa-shopping-cart"></i></button></li>
+                                <li><a href="/prodview/{{front.product_id}}"><i class="fa fa-eye"></i></a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="#">{{front.name}}</a></h6>
+                            <h5>{{front.dissprice}} Rs</h5>
+                            <h6><del>{{front.price}} Rs</del></h6>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+    </section>
+    <!-- Featured Section End -->
+
+    <!-- Banner Begin -->
+    <div class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="banner__pic">
+                        <img src="img/banner/banner-1.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="banner__pic">
+                        <img src="img/banner/banner-2.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade right" id="mess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <p class="heading">Product Already In Cart
+        </p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-3">
+            <p></p>
+            <p class="text-center"><i class="fas fa-shopping-cart fa-2x"></i></p>
+          </div>
+          <p class="text-center">Lets Buy those awesome choices of yours!</p>
+        </div>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+      <form action="/cart">
+        <button type="submit" class="btn btn-info">Go to checkout</button>
+        </form>
+        <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Cancel</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!-- Button trigger modal-->
+
+<!--Modal: modalCookie-->
+
+    <!-- Banner End -->
+
+    <!-- Latest Product Section Begin
+    <section class="latest-product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="latest-product__text">
+                        <h4>Latest Products</h4>
+                        <div class="latest-product__slider owl-carousel">
+                            <div class="latest-prdouct__slider__item">
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="img/latest-product/lp-1.jpg" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6>Crab Pool Security</h6>
+                                        <span>$30.00</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="img/latest-product/lp-2.jpg" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6>Crab Pool Security</h6>
+                                        <span>$30.00</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="img/latest-product/lp-3.jpg" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6>Crab Pool Security</h6>
+                                        <span>$30.00</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="latest-prdouct__slider__item">
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="img/latest-product/lp-1.jpg" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6>Crab Pool Security</h6>
+                                        <span>$30.00</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="img/latest-product/lp-2.jpg" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6>Crab Pool Security</h6>
+                                        <span>$30.00</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="img/latest-product/lp-3.jpg" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6>Crab Pool Security</h6>
+                                        <span>$30.00</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                        </div>
+                    </div>
+
+    </section>
+    <!-- Latest Product Section End -->
+<!--
+        <section class="categories">
+        <div class="container">
+          <div class="section-title">
+              <h2>Most Buyed</h2>
+          </div>
+
+            <div class="row">
+
+                <div class="categories__slider owl-carousel">
+                    {%for front in x_img %}
+                    <div class="col-lg-3">
+                      
+                      <div class="categories__item" data-setbg="/media/{{front.front_image.url}}">
+                            <h5><a href="#">Fresh Fruit</a></h5>
+                          </div>
+                        
+
+                    </div>
+                    {%endfor%}
+                  </div>
+                  </div>
+
+        </div>
+    </section>
+
+
+-->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__about__logo">
+                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        </div>
+                        <ul>
+                            <li>Address: 60-49 Road 11378 New York</li>
+                            <li>Phone: +65 11.188.888</li>
+                            <li>Email: hello@colorlib.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                    <div class="footer__widget">
+                        <h6>Useful Links</h6>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">About Our Shop</a></li>
+                            <li><a href="#">Secure Shopping</a></li>
+                            <li><a href="#">Delivery infomation</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Our Sitemap</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="#">Who We Are</a></li>
+                            <li><a href="#">Our Services</a></li>
+                            <li><a href="#">Projects</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Innovation</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer__widget">
+                        <h6>Join Our Newsletter Now</h6>
+                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <form action="#">
+                            <input type="text" placeholder="Enter your mail">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
+                        <div class="footer__widget__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer__copyright">
+                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+                        <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+<!--Modal: modalCookie-->
+{% endblock %}
+{% block js%}
+<script type="text/javascript">
+  
+    $('.cardaddbutton').bind('click', function(e) { 
+        e.preventDefault()  
+        product_id = $(this).attr('data-id')        
+        console.log(product_id)
+        
+        data = {
+            product_id: product_id
+        }
+        $.ajax({
+         'url' : '/cartadd' ,
+         'type' : 'GET',
+        'data':data   ,      
+         'success' : function(response) {
+            var res= jQuery.parseJSON(response);
+            if (res.logerr!=undefined){
+                alert("ALREADY IN CART")
+                $('#mess').modal('show')
+            }
+            
+            else if (res.logged!=undefined){
+             alert("ADDED TO CART")
+             $("mess").html("ADDED TO CART")
+             $(".humberger__menu__cart").load(" .humberger__menu__cart");
+
+            }
+           
+          
+         },
+         error: function(response){ 
+             console.log(response) 
+             }
+
+            
+         });
+         
+      });
+  
+   </script>
+
+{% endblock %}

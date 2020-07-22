@@ -1,241 +1,391 @@
 {% extends 'basic.html' %}
+{% load static %}
 {% block body %}
 
-<main class="mt-5 pt-5">
-    <div class="container wow fadeIn">
-
-      <!-- Heading -->
-      <h2 class="my-5 h2 text-center">CHECKOUT AREA</h2>
-
-
-      <div class="col-md-12 mb-4">
-        <form action="/placedorder" method="POST" >
-          {%csrf_token%}
-        <!-- Heading -->
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
-          <span class=" h3 text-center">Your cart</span>
-          <span class="badge badge-secondary badge-pill"></span>
-        </h4>
-
-        <!-- Cart -->
-        <ul class="list-group mb-3 z-depth-1">
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">{{slug.name}}</h6>
-              <small class="text-muted">Brief description</small>
-            </div>
-            <span class="text-muted">{{slug.dissprice}} Rs</span>
-          </li>
-
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">SELECT SIZE</h6>
-              <small class="text-muted">Brief description</small>
-            </div>
-            <!-- Default inline 1-->
-<div class="custom-control custom-radio custom-control-inline">
-    <input type="radio" name="size" class="custom-control-input" id="defaultInline1" value="Small" name="inlineDefaultRadiosExample">
-    <label class="custom-control-label"  for="defaultInline1">Small</label>
-  </div>
-  
-  <!-- Default inline 2-->
-  <div class="custom-control custom-radio custom-control-inline">
-    <input type="radio" name="size" class="custom-control-input" id="defaultInline2" value="Medium" name="inlineDefaultRadiosExample">
-    <label class="custom-control-label" for="defaultInline2">Medium</label>
-  </div>
-  
-  <!-- Default inline 3-->
-  <div class="custom-control custom-radio custom-control-inline">
-    <input type="radio" name="size" class="custom-control-input" id="defaultInline3" value="Large" name="inlineDefaultRadiosExample">
-    <label class="custom-control-label" for="defaultInline3">Large</label>
-  </div>
-          </li>
-
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-                <h6 class="my-0">Quantity</h6>
-                
-
-            </div>
-            <div class="col-md-3">
-                <!---
-                <input type="numb" id="#input1" class="text-muted" value="{{slug.dissprice}}">
-            <input type="number" id="#input2" name="input2" class="text-muted" value="">
-            <a href="javascript: void(0)" onClick="calc()">Calculate</a>
-            
-            <input type="text" name="output" id="output" value="">
-                -->
-                
-                <input type="hidden" name="input1" id="input1" value="{{slug.dissprice}}">
-<input type="number" name="quantity" id="input2" value="1">
-<!---
-<input type="text" name="output" id="output" value="">-->
-                
-        </div>
-          </li>
-
-          <!--
-          <li class="list-group-item d-flex justify-content-between bg-light">
-            <div class="text-success">
-              <h6 class="my-0">Promo code</h6>
-              <small>EXAMPLECODE</small>
-            </div>
-            <span class="text-success">-$5</span>
-          </li>-->
-          <li class="list-group-item d-flex justify-content-between">
-            <span>Total (Rs)</span>
-            
-            <input type="text" name="output" id="output" style="border: none;" class="text-right text-muted" value="">
-          </li>
-        </ul>
-        <!-- Cart -->
-
-        <!-- Promo code 
-        <form class="card p-2">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Promo code" aria-label="Recipient's username" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-secondary btn-md waves-effect m-0" type="button">Redeem</button>
-            </div>
-          </div>
-        </form>
-        <!-- Promo code -->
-
-      </div>
-      <!--Grid column-->
 
     
-    <!--Grid row-->
 
-      
-      <!--Grid row-->
-      <div class="row">
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h6><span class="icon_tag_alt"></span> Have a coupon? <a href="#">Click here</a> to enter your code
+                    </h6>
+                </div>
+            </div>
+            <div class="checkout__form">
+                <h4>Product Details</h4>
+                <form action="/placedorder" method="POST"> {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-8 col-md-6">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="product__details__quantity">
+                                        <p>Select Quantity<span>*</span></p>
+                                        <ul></ul>
+                                        <div class="quantity">
+                                            <div class="pro-qty" name="prodquantity" id="prodquantity1">
+                                                
+                                                <input type="text" name="quantity" id="prodquantity" min="0" value="1">
+                                            </div>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Color<span>*</span></p>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" value="Green" class="custom-control-input" id="defaultInline1" name="colors">
+                                            <label class="custom-control-label" for="defaultInline1">Green</label>
 
-        <!--Grid column-->
-        <div class="col-md-12 mb-4">
-            <span class="h2 text-center">SHIPPING DETAILS</span>
-          <!--Card-->
-          <div class="card my-5">
+                                          </div>
+                                          <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" value="Red" class="custom-control-input" id="defaultInline2" name="colors">
+                                            <label class="custom-control-label" for="defaultInline2">Red</label>
+                                            
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout__input">
+                                <b><p>Size<span>*</span></p></b>
+                                <div class="custom-control custom-radio custom-control-inline my-2" >
+                                    <input type="radio" value="small" class="custom-control-input" id="small" name="size">
+                                    <label class="custom-control-label" for="small">SMALL</label>
 
-            <!--Card content-->
-            <form class="card-body">
-              
-              <!--Grid row-->
-              <div class="row">
+                                  </div>
+                                  <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" value="medium" class="custom-control-input" id="medium" name="size">
+                                    <label class="custom-control-label" for="medium">MEDIUM</label>
 
-                <!--Grid column-->
-                <div class="col-md-6 mb-2">
+                                  </div>
+                                  <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio"  value="large" class="custom-control-input" id="large" name="size">
+                                    <label class="custom-control-label" for="large">LARGE</label>
+
+                                  </div>
+                                  <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" value="larger" class="custom-control-input" id="larger" name="size">
+                                    <label class="custom-control-label" for="larger">X-LARGE</label>
+
+                                  </div>
+                            </div>
+                            <div class="checkout_input">
+                                
+                                    <div class="shoping__continue">
+                                        <div class="shoping__discount">
+                                            <h4>Discount Code</h4>
+                                           
+                                                <input type="text"   id="discodetext" name="discodetext" placeholder="Enter your coupon code">
+                                                <a href="#" type="submit" id="discode" data-id="{{slug.product_id}}" class="btn btn-warning btn-sm">APPLY COUPON</a>
+                                           
+                                        </div>
+                                    </div>
+                                
+                            </div>
+                       
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="checkout__order" id="reload_info">
+                                <h4>Your Order</h4>
+                                <div class="checkout__order__products">Product <span>Total</span></div>
+                                <ul>
+                                    <li>{{slug.name}}<span>{{slug.dissprice}}Rs</span></li>
+                                    <li>Shipping Charges<span>0 Rs</span></li>
+                                    <li class="red-text">Coupon Code<span id="codestatus">Not Applied</span></li>
+                                </ul>
+                                
+                                <div class="checkout__order__total"  id="tempamount">Total <span  id="update_price">{{slug.dissprice}}</span>Rs</div>
                     
-                  <!--firstName-->
-                  <div class="md-form ">
-                    <input type="text" id="firstName" name="firstName" class="form-control">
-                    <label for="firstName" class="">First name</label>
-                  </div>
-
-                </div>
-                <!--Grid column-->
-
-                <!--Grid column-->
-
-                <!--Grid column-->
-
-              </div>
-
-              <div class="md-form mb-5">
-                <input type="text" id="email" name="email" class="form-control" placeholder="youremail@example.com">
-                <label for="email" class="">Email (Keep it real We will send product details!)</label>
-              </div>
-
-              <!--address-->
-              <div class="md-form mb-5">
-                <input type="text" id="address" name="adress" class="form-control" placeholder="1234 Main St">
-                <label for="address" class="">Address</label>
-              </div>
-
-
-              <!--Grid row-->
-              <div class="row">
-
-                <!--Grid column-->
-                <div class="col-lg-4 col-md-12 mb-4">
-
-                  <label for="country">Country <small>(We only ship in India)</small></label>
+                                <p></p>
+                                <div class="checkout__order__products">PAYMENT MODE</div>
+                                <div class="checkout__input__checkbox">
+                                    <label for="paypal">
+                                        COD
+                                        <input type="checkbox" id="paypal">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
                 
-                    <input type="text" disabled class="form-control" placeholder="INDIA">
+            </div>
+
+
+
+
+
+
+
+
+            <!----------------------------------------------------->
+            <div class="checkout__form">
+                <h4>Billing Details</h4>
                 
-                 
+                    <div class="row">
+                        <div class="col-lg-8 col-md-6">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>First Name<span>*</span></p>
+                                        <input type="text" name="firstname" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Last Name<span>*</span></p>
+                                        <input type="text" name="lastname" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" value="{{slug.product_id}}" name="product_id">
+                            <div class="checkout__input">
+                                <p>Country<span><small>(we only ship in India)</small></span></p>
+                                <input type="text" placeholder="INDIA" readonly>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Address<span>*</span></p>
+                                <input type="text" name="adress" required placeholder="Street Address (Apartment, suite, unite ect)" class="checkout__input__add">
+                                
+                            </div>
+                            <div class="checkout__input">
+                                <p>Town/City<span>*</span></p>
+                                <input type="text" name="city" required>
+                            </div>
+                            <div class="checkout__input">
+                                <p>State<span>*</span></p>
+                                <input type="text" name="state" required>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Postcode / ZIP<span>*</span></p>
+                                <input type="text" name="zip" required>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Phone<span>*</span></p>
+                                        <input type="text" name="phone" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Email<span>*</span></p>
+                                        <input type="text" name="email" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="site-btn">PLACE ORDER</button>
+                        
 
-                </div>
-                <!--Grid column-->
 
-                <div class="col-lg-4 col-md-12 mb-4">
 
-                  <label for="country">State</label>
-                
-                    <input type="text" required name="state" name="state" class="form-control" placeholder="Ex. Uttar Pradesh">
-                
-                 
 
-                </div>
-                <!--Grid column-->
-
-                <!--Grid column-->
-                <div class="col-lg-4 col-md-6 mb-4">
-
-                  <label for="zip">Zip</label>
-                  <input type="text" name="zip" class="form-control" id="zip" placeholder="" required>
-
-                </div>
-                <!--Grid column-->
-
-              </div>
-              <!--Grid row-->
-
-              <hr>
-
-              <label for="payment"><h3>Payment</h3></label> 
-              <div class="d-block my-3">
-                <div class="custom-control custom-radio">
-                  <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                  <label class="custom-control-label" for="credit">COD <small>Cash On Delivery</small></label>
-                  
-
-                  <hr>
-                </div>
-              </div>
-   
-
-              
-              
-              <hr class="mb-4">
-              <input type="hidden" name="product_id" value="{{slug.product_id}}">
-              <button class="btn btn-primary btn-lg btn-block" type="submit">Place Order</a>
-
-            </form>
-
-          </div>
-          <!--/.Card-->
-
+                        </div>
+                        <!---
+                        <div class="col-lg-4 col-md-6">
+                            
+                            <div class="checkout__order">
+                                <h4>Your Order</h4>
+                                <div class="checkout__order__products">Product <span>Total</span></div>
+                                <ul>
+                                    <li>{{slug.name}}<span>{{slug.dissprice}}Rs</span></li>
+                                    <li>Shipping Charges<span>0 Rs</span></li>
+                                    <li class="red-text" >Coupon Code<span id="codestatus">Not Applied</span></li>
+                                </ul>
+                                
+                                <div class="checkout__order__total">Total <span>20 Rs</span></div>
+                                
+                                <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
+                                    ut labore et dolore magna aliqua.</p>
+                                <div class="checkout__input__checkbox">
+                                    <label for="payment">
+                                        Check Payment
+                                        <input type="checkbox" id="payment">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="checkout__input__checkbox">
+                                    <label for="paypal">
+                                        Paypal
+                                        <input type="checkbox" id="paypal">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="site-btn">PLACE ORDER</button>
+                            </div>
+                        </div>
+                    -->
+                    </div>
+                </form>
+            </div>
         </div>
-  
+    </section>
+    <!-- Checkout Section End -->
 
-      </div>
-      <!--Grid row-->
+    <!-- Footer Section Begin -->
+    <footer class="footer spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__about__logo">
+                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        </div>
+                        <ul>
+                            <li>Address: 60-49 Road 11378 New York</li>
+                            <li>Phone: +65 11.188.888</li>
+                            <li>Email: hello@colorlib.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                    <div class="footer__widget">
+                        <h6>Useful Links</h6>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">About Our Shop</a></li>
+                            <li><a href="#">Secure Shopping</a></li>
+                            <li><a href="#">Delivery infomation</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Our Sitemap</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="#">Who We Are</a></li>
+                            <li><a href="#">Our Services</a></li>
+                            <li><a href="#">Projects</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Innovation</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer__widget">
+                        <h6>Join Our Newsletter Now</h6>
+                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <form action="#">
+                            <input type="text" placeholder="Enter your mail">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
+                        <div class="footer__widget__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer__copyright">
+                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+                        <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    </div>
-  </main>
+        
+{% endblock %}
+{% block js %}
+        <script type="text/javascript">
+        $('#discode').bind('click', function(e) { 
+            e.preventDefault() 
+            discodetext=$('#discodetext').val()
+            tempamount= $('#update_price').html()
+            
+            console.log(tempamount)
+            
+            data = {
+                
+                discodetext: discodetext,
+                tempamount:tempamount
+            }
+            
+            $.ajax({
+             'url' : '/applycode/{{slug.product_id}}' ,
+             'type' : 'GET',
+            'data':data   ,      
+        
+             'success' : function(response) {
+                 
+                if (response=="False"){
+                    if ($('#discodetext').val()==""){
+                        $('#codestatus').html("No Code provided")
+                    }
+                    else{
+                    $('#codestatus').html("InVALID")
+                    $('#reload_info').hide()
+                    $('#reload_info').fadeIn(1000);
+                    $('#discode').attr("readonly",true)
 
-{% endblock%}
-{%block js%}
+                    }
+                }
+                else {
+                    $("#update_price").html(response)
+                    $('#reload_info').hide()
+                    $('#reload_info').fadeIn(1000);
 
-<script type="text/javascript">
+                    $('#codestatus').html("applied")
+                    
+                }
+                
+                
 
-$("#input2,#input1").keyup(function () {
+         
+             },
+             
+             error: function(response){ 
+                 console.log(response) 
+                 }
+        
+                
+             });
+             
+          });
 
-$('#output').val($('#input1').val() * $('#input2').val());
+          /*FOR NUMBERS BITCH*/
+          $('#prodquantity1').bind('click', function(e) { 
+            e.preventDefault() 
+            prodval=$('#prodquantity').val()
+            
+            
+            
+            data = {
+                
+                prodval: prodval
+            }
+            
+            $.ajax({
+             'url' : '/prodq/{{slug.product_id}}' ,
+             'type' : 'GET',
+            'data':data   ,      
+        
+             'success' : function(response) {
+                $("#update_price").html(response)
+                    $('#reload_info').hide()
+                    $('#reload_info').fadeIn(1000);
 
-});
+                         
+         
+             },
+             
+             error: function(response){ 
+                 console.log(response) 
+                 }
+        
+                
+             });
+             
+             
+          });
 
-</script>
-
-{%endblock%}
+        </script>
+        {% endblock js%}

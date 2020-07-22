@@ -8,53 +8,75 @@ from django.contrib import auth
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
 import random
+import json
 
 # Create your views here.
 
+
+
 def index(request):
     count=cart_DB.objects.filter(username=request.user.username).count()
-    x_img=product_DB.objects.get(name="anything")
-    dyn_img=dyn_slide.objects.filter(dysp=True)
-    count=dyn_slide.objects.filter(dysp=True).count()
-    dysp_rand=random.randint(1,count)
-    dysp_now=dyn_slide.objects.get(dysp=True,id=dysp_rand)
+    x_img=product_DB.objects.filter(bestseller=True)
+    category=product_DB.objects.all()
+    dysp_now=dyn_slide.objects.get(title="promo")
     print(dysp_now)
-    return render(request,"home-page.html",{"front":x_img.front_image,"back":x_img.back_image,"model_":x_img.model_image,"count":count,"dyn_disp":dysp_now})
+    return render(request,"index.html",{"count":count,"category":category,"dysp_now":dysp_now,"x_img":x_img})
 
 def products(request,slug):
-    product_info=product_DB.objects.filter(category=slug)
+    all_product=product_DB.objects.filter(category=slug)
+    product_info=product_DB.objects.filter(category=slug, bestseller=True)
     count=cart_DB.objects.filter(username=request.user.username).count()
-    return render(request,"products.html",{'product_info':product_info,'count':count})
+    return render(request,"products.html",{'product_info':product_info,'all_product':all_product,'count':count})
 
 def prodview(request,id):
     detinfo=product_DB.objects.get(product_id=id)
     return render(request,"product-page.html",{'detinfo':detinfo})
 
-@login_required(login_url='/login')
+
 def cartadd(request):
-    if request.method =="POST":
-        product_id = request.POST.get('product_id','')
+    if request.method =="GET":
+        product_id = request.GET.get('product_id','')
         slug = product_DB.objects.get(product_id=product_id)
-        
+
         if cart_DB.objects.filter(product_id=product_id).exists():
-            return HttpResponse(f'''
+            '''
+            return HttpResponse(f
                 <script>
                 alert("Product already in your cart");
                 window.location.href="products/{slug.category}"
                 </script>
-            ''')
-        cartitems= cart_DB(username=request.user.username,product_id=product_id,price=slug.price,category=slug.category,dissprice=slug.dissprice,cart_image=slug.front_image)
+            )
+            '''
+            response = json.dumps({"logerr":"ALREADY IN CART"})
+            return HttpResponse(json.dumps(response),content_type="application/json",)
+        amount_data=slug.dissprice  
+            
+        cartitems= cart_DB(username=request.user.username,product_id=product_id,price=slug.price,category=slug.category,dissprice=slug.dissprice,cart_image=slug.front_image,amount=amount_data)
         cartitems.save()
+            
         
-        
-        return redirect(f'products/{slug.category}')
+
+        response = json.dumps({"logged":"DOne"})
+        return HttpResponse(json.dumps(response),content_type="application/json",)
     else:
         return HttpResponse("Request method is not a GET")
     return HttpResponse("DONE")
+    '''
+    if request.user.is_authenticated:
+        product_id = request.GET.get('product_id','')
+        print(product_id)
+        response = json.dumps({"sucess":"yes"})
+        return HttpResponse(json.dumps(response),content_type="application/json",)
+    else:
+        response = json.dumps({"logerr":"Please Login"})
+        return HttpResponse(json.dumps(response),content_type="application/json",)
+    '''
+
+
 
 @login_required(login_url='/login')
 def cart(request):
-    all_cart=cart_DB.objects.filter(username=request.user.username)
+    all_cart=cart_DB.objects.filter(username=request.user.username).order_by("-cart_add")
     return render(request,"cart.html",{'all_cart':all_cart})
 
 @login_required(login_url='/login')
@@ -67,26 +89,30 @@ def placedorder(request):
     if request.method=="POST":
         product_id=request.POST.get('product_id','')
         firstname=request.POST.get('firstname','')
+        lastname=request.POST.get('firstname','')
         email=request.POST.get('email','')
         adress=request.POST.get('adress','')
+        city=request.POST.get('city','')
+        phone=request.POST.get('phone','')
         state=request.POST.get('state','')
         zip_s=request.POST.get('zip','')
         size=request.POST.get('size','')
         quantity=request.POST.get('quantity','')
+        color= request.POST.get('colors','')
         slug = product_DB.objects.get(product_id=product_id)
+        
 
-        amount = int(slug.dissprice)*int(quantity)
-
-        print(size,amount)
+        print(size,quantity)
+        amount = int(quantity) * slug.dissprice
+        print(amount)
 
         
-        placeorder_info=order_DB(username=request.user.username,email=email,name=firstname,address=adress,payment_type="COD",quantity=quantity,amount=amount,state_zip=zip_s,order_status="Not yet shipped",delivery_date="Next Monday",size=size,order_image=slug.front_image,product_name=slug.name)
-
+        placeorder_info=order_DB(username=request.user.username,email=email,firstname=firstname,lastname=lastname,address=adress,payment_type="COD",quantity=quantity,amount=amount,city=city,state=state,state_zip=zip_s,order_status="Not yet shipped",delivery_date="Next Monday",size=size,order_image=slug.front_image,product_name=slug.name)
         placeorder_info.save()
         
-    order_info=order_DB.objects.filter(username=request.user.username)
-    return render(request,"placedorder.html",{'order_info':order_info})
-    
+    order_info=order_DB.objects.filter(username=request.user.username).order_by("-order_date")
+    return render(request,"orders.html",{'order_info':order_info})
+
 @login_required(login_url='/login')
 def track(request,id):
     prod=order_DB.objects.get(order_id=id)
@@ -141,11 +167,10 @@ def login(request):
 
 @login_required(login_url='/login')
 def cartremove(request):
-    if request.method=="POST":
-        product_id=request.POST.get('product_id','')
-        cart_remove=cart_DB.objects.get(product_id=product_id)
-        cart_remove.delete()
-        return redirect('cart')
+    product_id=request.GET.get('product_id','')
+    print(product_id)
+    cart_remove=cart_DB.objects.get(product_id=product_id)
+    cart_remove.delete()
     return HttpResponse("BAD REQUEST 403 GO BACK")
 
 def logout(request):
@@ -154,7 +179,7 @@ def logout(request):
 
 
 def searchMatch(query, item):
-    '''return true only if query matches the item'''
+    '''return true only if query matches    the item'''
     if query in item.description.lower() or query in item.name.lower() or query in item.category.lower():
         return True
     else:
@@ -168,14 +193,44 @@ def search(request):
     for cat in cats:
         prodtemp = product_DB.objects.filter(category=cat)
         prod = [item for item in prodtemp if searchMatch(query, item)]
-    
+
         n = len(prod)
         nSlides = n // 4 + ceil((n / 4) - (n // 4))
         if len(prod) != 0:
             allProds.append([prod, range(1, nSlides), nSlides])
-            
+
     params = {'allProds': allProds, "msg": ""}
     print(params)
     if len(allProds) == 0 or len(query)<4:
         params = {'msg': "Please make sure to enter relevant search query"}
     return render(request, 'search.html', params)
+
+def cartupdate(request):
+    cart_id=request.GET.get('cart_id','')
+    quantity=request.GET.get('quant_cart','')
+    cart_info=cart_DB.objects.get(id=cart_id)
+    print(cart_info)
+    print(quantity)
+    print(cart_info.amount)
+    print(cart_info.quantity)
+
+def applycode(request,id):
+    product_id=product_DB.objects.get(product_id=id)
+    promocode=request.GET.get('discodetext','')
+    tempam=request.GET.get('tempamount','')
+    print(tempam)
+
+    if promocode_available.objects.filter(promo=promocode).exists():
+        #less_amount = int(product_id.dissprice)-10
+        less_amount= int(tempam)-10
+        print(less_amount)
+        return HttpResponse(less_amount)
+    else:
+        return HttpResponse("False")
+
+def prodq(request,id):
+    product_id=product_DB.objects.get(product_id=id)
+    prodval = request.GET.get("prodval",'')
+    print(int(prodval)*(product_id.dissprice))
+    amount_total=int(prodval)*(product_id.dissprice)
+    return HttpResponse(amount_total)

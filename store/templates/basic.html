@@ -1,269 +1,232 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="zxx">
 
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatib le" content="ie=edge">
-  <title>{% block title %}{%endblock%}</title>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-  <!-- Bootstrap core CSS -->
-  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-  <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
-  <!-- Your custom styles (optional) -->
-  <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
-  <style type="text/css">
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %} {% endblock %}</title>
 
-    {% block style %}
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
-    {% endblock %}
-.nav-link_waves-effect{
-        color:white;
-        margin:2px;
-        display: inline-block;
-        font-size:15px;
-      }
-    .nav-link_waves-effect:hover{
-      color:yellow;
-        margin:2px;
-        display: inline-block;
-        font-size:15px;
-    }  
-.navbar-brand_waves-effect1{
-  color:black;
-        margin:2px;
-  display: inline-block;
-        font-size:20px;
-}
-    html,
-    body,
-    header,
-    .carousel {
-      height: 60vh;
-    }
-
-
-    @media (max-width: 740px) {
-
-      html,
-      body,
-      header,
-      .carousel {
-        height: 100vh;
-      }
-    }
-
-  
-
-    @media (min-width: 800px) and (max-width: 850px) {
-
-      html,
-      body,
-      header,
-      .carousel {
-        height: 100vh;
-      }
-    }
-  
-
-  </style>
-  {% block script %}
-
-  {% endblock %}
+    <!-- Css Styles -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
 </head>
 
 <body>
+  <div id="preloder">
+    <div class="loader"></div>
+</div>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark default-color fixed-top">
-    <div class="container">
-
-      <!-- Brand -->
-      <a class="navbar-brand waves-effect navbar-brand_waves-effect1" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
-        <img src="{% static "img/thetimeloops1.png" %}" style="width: 40px;height: 40px;">
-      </a>
-
-      <!-- Collapse
-      <div id="forphone">
-        <ul class="navbar-nav nav-flex-icons">
-          <li class="nav-item">
-            <a href="/cart" class="nav-link waves-effect">
-            
-              <i class="fas fa-shopping-cart" id="popcart" data-container="body" data-toggle="popover" data-placement="top" data-html="true"></i>
-              <span class="clearfix d-none d-sm-inline-block"> Cart </span>
-            </a>
-          </li>
-          </ul>
-
-        </div>
-      -->
-      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button> -->
-
-      <!-- Links -->
-
-
-        <!-- Left -->
-        <!-- <ul class="navbar-nav mr-auto">
-          <li class="nav-item {% block homeactive%} {%endblock%}"> -->
-
-            <a class="nav-link_waves-effect" href="/"><i class="fas fa-home fa-lg"></i>
-              <!-- <span class="sr-only">(current)</span> -->
-            </a>
-         <!--  </li> -->
-          <!-- <li class="nav-item {% block homeacive%} {%endblock%}"> -->
-            <a class="nav-link_waves-effect" href="/placedorder"><i class="fas fa-shopping-bag fa-lg"></i>
-              <!-- <span class="sr-only">(current)</span> -->
-            </a>
-         <!--  </li> -->
-        <!-- </ul> -->    
-<!--   <li class="nav-item"> -->
-             <a href="#" onclick="show_on_req()" class="nav-link_waves-effect">
-          <i style="font-size: 19px;" class="fas fa-search fa-lg"></i>
-              </a>
-          <!-- </li> -->
-
-         <!--  <li class="nav-item"> -->
-            <a href="/cart" class="nav-link_waves-effect">
-            
-              <i class="fas fa-shopping-cart fa-lg"></i>
-              <span  class="badge red z-depth-1 mr-1" id="cart_count"> {{count}} </span>
-
-            </a>
-        <ul class="navbar-nav nav-flex-icons">
-        
-         <!--  </li> -->
-          <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user fa-lg"></i>
-        </a>
-         <div class="dropdown-menu dropdown-menu-right dropdown-default"
-          aria-labelledby="navbarDropdownMenuLink-333">
-          {% if request.user.is_authenticated %}
-          <!-- <li class="nav-item"> -->
-            <a class="nav-link_waves-effect" href="">
-             My Profile
-            </a>
-            <a class="nav-link_waves-effect" href="/logout">Log Out
-              <!-- <span class="sr-only">(current)</span> -->
-            </a>
-         <!--  </li> -->
-          {% else %}
-          <!-- <li class="nav-item"> -->
-            <a class="dropdown-item" href="/login">Login</a>
-            <a class="dropdown-item" href="/register">Register
-              <!-- <span class="sr-only">(current)</span> -->
-            </a>
-          <!-- </li> -->
-          {% endif %}
-
-        </div>
-    </li>
-
+<!-- Humberger Begin -->
+<div class="humberger__menu__overlay"></div>
+<div class="humberger__menu__wrapper">
+    <div class="humberger__menu__logo">
+        <a href="#"><img src="img/logo.png" alt=""></a>
+    </div>
+    <div class="humberger__menu__cart">
+        <ul>
+            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>{{count}}</span></a></li>
         </ul>
-        
-<form action="search" method="GET" class="nav-link_waves-effect" id="show_on" style="display: none;">
-  <input type="text" name="search" style="border-radius: 10px; border:1px solid #ccc; height:32px;">
-  <button type="button" type="submit" class="btn btn-primary btn-sm">Search</button>
-</form> 
 
     </div>
-  </nav>
-
-  {%block body%}
-
-  {%endblock%}
-
-  <!--Footer-->
-  <footer class="page-footer text-center font-small mt-4 wow fadeIn">
-
-    <!--Call to action-->
-    <!--/.Call to action-->
-
-    <hr class="my-4">
-
-    <!-- Social icons -->
-    <div class="pb-4">
-      <a href="https://www.facebook.com/mdbootstrap" target="_blank">
-        <i class="fab fa-facebook-f mr-3"></i>
-      </a>
-
-      <a href="https://twitter.com/MDBootstrap" target="_blank">
-        <i class="fab fa-twitter mr-3"></i>
-      </a>
-
-      <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" target="_blank">
-        <i class="fab fa-youtube mr-3"></i>
-      </a>
-
-      <a href="https://plus.google.com/u/0/b/107863090883699620484" target="_blank">
-        <i class="fab fa-google-plus-g mr-3"></i>
-      </a>
-
-      <a href="https://dribbble.com/mdbootstrap" target="_blank">
-        <i class="fab fa-dribbble mr-3"></i>
-      </a>
-
-      <a href="https://pinterest.com/mdbootstrap" target="_blank">
-        <i class="fab fa-pinterest mr-3"></i>
-      </a>
-
-      <a href="https://github.com/mdbootstrap/bootstrap-material-design" target="_blank">
-        <i class="fab fa-github mr-3"></i>
-      </a>
-
-      <a href="http://codepen.io/mdbootstrap/" target="_blank">
-        <i class="fab fa-codepen mr-3"></i>
-      </a>
+    <div class="humberger__menu__widget">
+        <div class="header__top__right__auth">
+            {% if request.user.is_authenticated %}
+            <a href="/login"><i class="fa fa-user"></i> {{request.user.username}}</a>
+            {% else %}
+            <a href="/login"><i class="fa fa-user"></i>Login</a>
+            {% endif %}
+        </div>
     </div>
-    <!-- Social icons -->
-
-    <!--Copyright-->
-    <div class="footer-copyright py-3">
-      © 2019 Copyright:
-      <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> TheTimeLoops </a>
+    <nav class="humberger__menu__nav mobile-menu">
+        <ul>
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/placedorder">Your Orders</a></li>
+      
+            
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+    <div id="mobile-menu-wrap"></div>
+    <div class="header__top__right__social">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-pinterest-p"></i></a>
     </div>
-    <!--/.Copyright-->
+    <div class="humberger__menu__contact">
+        <ul>
+            <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+            <li>Free Shipping for all Order of $99</li>
+        </ul>
+    </div>
+</div>
+<!-- Humberger End -->
 
-  </footer>
-  <!--/.Footer-->
+<!-- Header Section Begin -->
+<header class="header">
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__left">
+                        <ul>
+                            <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                            <li>Free Shipping for all Order of $99</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__right">
+                        <div class="header__top__right__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                        </div>
 
-  <!-- SCRIPTS -->
+                        <div class="header__top__right__auth">
+                            {% if request.user.is_authenticated %}
+                            <a href="/login"><i class="fa fa-user"></i> {{request.user.username}}</a>
+                            {% else %}
+                            <a href="/login"><i class="fa fa-user"></i>Login</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="header__logo">
+                    <a href="./index.html"><img src="{% static 'img/thetimeloops.png' %}" height="60px" width="60px" alt=""></a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <nav class="header__menu">
+                  <ul>
+                    <li class="{% block active %}{% endblock%}"><a href="/">Home</a></li>
+                    <li><a href="/placedorder">Your Orders</a></li>
+                    
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+                </nav>
+            </div>
+            <div class="col-lg-3">
+                <div class="header__cart">
+                    <ul>
+
+                        <li><a href="/cart"><i class="fa fa-shopping-bag"></i> <span>{{count}}</span></a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="humberger__open">
+            <i class="fa fa-bars"></i>
+        </div>
+    </div>
+</header>
+    <!-- Header Section End -->
+
+    <!-- Hero Section Begin -->
+    <section class="hero hero-normal">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="hero__categories">
+                        <div class="hero__categories__all">
+                            <i class="fa fa-bars"></i>
+                            <span>Categories</span>
+                        </div>
+                        <ul>
+                            <li><a href="/products/Male">Mens Collection</a></li>
+                            <li><a href="/prodview/Female">Womens Collection</a></li>
+                            
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                            <form action="/search">
+                                
+                                <input type="text"  name="search" placeholder="What do yo u need?">
+                                <button type="submit" class="site-btn">SEARCH</button>
+                            </form>
+                        </div>
+                        <div class="hero__search__phone">
+                            <div class="hero__search__phone__icon">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="hero__search__phone__text">
+                                <h5>+65 11.188.888</h5>
+                                <span>support 24/7 time</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+{% block body %}
+
+
+
+
+
+
+
+{% endblock %}
+
+  </script>
+  <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+  <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+  <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+  <script src="{% static 'js/mixitup.min.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>  
   <!-- JQuery -->
-  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
-  <!-- Initializations -->
-  <script type="text/javascript">
-    // Animations initialization
-    new WOW().init();
-
-
-
-  </script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
   {%block js%}
-  {%endblock%}
-  <script type="text/javascript">
-    function show_on_req(){
-      if(document.getElementById("show_on").style.display=="none"){
-        document.getElementById("show_on").style.display="inline-block";
-      }
-      else{
-        document.getElementById("show_on").style.display="none";
-      }
-    }
-  </script>
+  
+  {% endblock %}
 </body>
 
 </html>
